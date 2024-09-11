@@ -10,7 +10,7 @@ from ev3dev2.motor import *
 from time import sleep
 
 from ev3dev2.motor import LargeMotor, OUTPUT_A, OUTPUT_D, SpeedPercent, MoveTank
-from ev3dev2.sensor import INPUT_1
+from ev3dev2.sensor import INPUT_3
 from ev3dev2.sensor.lego import TouchSensor
 from ev3dev2.led import Leds
 
@@ -52,6 +52,23 @@ def set_font(name):
     os.system('setfont ' + name)
 
 
+def draw_line():
+    ''' Draw a straight line on the driving surface, correcting steering as it goes '''
+
+    # Initialize the tank drive object and calibrate the gyro sensor
+    tank_drive = MoveTank(OUTPUT_D, OUTPUT_A)
+    tank_drive.gyro = GyroSensor(INPUT_3)
+    tank_drive.gyro.calibrate()
+    
+    # while rotations is less than variable_1(some distance we want it to drive)
+        # get current gyro output and multiply it by (-10)
+        # if gyro output is less than 0, then adjust speed of left motor by gyro output
+        # else adjust speed of right motor by gyro output
+    # exit while loop
+    # stop both motors
+
+
+
 def main():
     '''The main function of our program'''
 
@@ -61,26 +78,18 @@ def main():
     set_font('Lat15-Terminus24x12')
 
     # print something to the screen of the device
-    print('Hello World!')
+    print('Hello World!, I am a line drawing robot')
 
     # print something to the output panel in VS Code
-    debug_print('Hello VS Code!')
+    debug_print('Hello VS Code! I am a line drawing robot')
+
+    # draw a line
+    draw_line()
+
 
     # wait a bit so you have time to look at the display before the program
     # exits
-    time.sleep(5)
-
-    tank_drive = MoveTank(OUTPUT_A, OUTPUT_D)
-
-# drive in a turn for 5 rotations of the outer motor
-# the first two parameters can be unit classes or percentages.
-    tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(75), 10)
-
-# drive in a different turn for 3 seconds
-    tank_drive.on_for_seconds(SpeedPercent(60), SpeedPercent(30), 3)
-
-
-
+    time.sleep(2)
 
 if __name__ == '__main__':
     main()

@@ -10,7 +10,7 @@ from ev3dev2.motor import *
 from time import sleep
 
 from ev3dev2.motor import LargeMotor, OUTPUT_A, OUTPUT_D, SpeedPercent, MoveTank
-from ev3dev2.sensor import INPUT_1
+from ev3dev2.sensor import INPUT_3
 from ev3dev2.sensor.lego import TouchSensor
 from ev3dev2.led import Leds
 
@@ -52,6 +52,10 @@ def set_font(name):
     os.system('setfont ' + name)
 
 
+
+
+
+
 def main():
     '''The main function of our program'''
 
@@ -61,26 +65,32 @@ def main():
     set_font('Lat15-Terminus24x12')
 
     # print something to the screen of the device
-    print('Hello World!')
+    print('Hello World!, I am a dead reckoning robot')
 
     # print something to the output panel in VS Code
-    debug_print('Hello VS Code!')
+    debug_print('Hello VS Code! I am a dead reckoning robot')
+
+    # initilize a 3x3 grid array of integers that represent instructions for left and right motor speeds and durations of time
+
+    # initialize the tank drive object and calibrate the gyro sensor
+
+    # for each row in the grid array
+
+        # get index one and set left motor to that speed
+        # get index 2 and set right motor to that speed
+        # get index 3 and set the duration of time to drive
+        # execute drive command
+        # next loop
+    
+    # stop both motors
+    # get gyro sensor reading and print it to the screen
+
+    # somehow compute the location? as a distance from it's origin point?
+
 
     # wait a bit so you have time to look at the display before the program
     # exits
-    time.sleep(5)
-
-    tank_drive = MoveTank(OUTPUT_A, OUTPUT_D)
-
-# drive in a turn for 5 rotations of the outer motor
-# the first two parameters can be unit classes or percentages.
-    tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(75), 10)
-
-# drive in a different turn for 3 seconds
-    tank_drive.on_for_seconds(SpeedPercent(60), SpeedPercent(30), 3)
-
-
-
+    time.sleep(2)
 
 if __name__ == '__main__':
     main()
