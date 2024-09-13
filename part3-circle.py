@@ -53,7 +53,7 @@ def set_font(name):
 
 
 def draw_circle():
-    ''' Draw a circle line on the driving surface, stop after completing one complete circle'''
+    ''' Draw a circle on the driving surface, stop after completing one complete circle'''
 
     # Initialize the tank drive object and calibrate the gyro sensor
     tank_drive = MoveTank(OUTPUT_D, OUTPUT_A)
@@ -61,7 +61,7 @@ def draw_circle():
     tank_drive.gyro.calibrate()
     
     # Drive in a circle
-    tank_drive.on_for_degrees(SpeedPercent(50), SpeedPercent(40), 360)
+    tank_drive.on_for_degrees(SpeedPercent(10), SpeedPercent(4), 360)
 
 
 

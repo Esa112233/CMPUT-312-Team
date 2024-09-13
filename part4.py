@@ -71,20 +71,34 @@ def main():
     debug_print('Hello VS Code! I am a dead reckoning robot')
 
     # initilize a 3x3 grid array of integers that represent instructions for left and right motor speeds and durations of time
+    command = [
+				  	[ 80, 60, 2],
+				  	[ 60, 60, 1],
+				  	[-50, 80, 2]
+                                ]
 
     # initialize the tank drive object and calibrate the gyro sensor
+    tank_drive = MoveTank(OUTPUT_D, OUTPUT_A)
+    tank_drive.gyro = GyroSensor(INPUT_3)
+    tank_drive.gyro.calibrate()
+    
+    current_position = [0, 0]
+    
 
     # for each row in the grid array
-
+    for i in range(len(command)):
         # get index one and set left motor to that speed
+        left_motor_speed = command[i][0]
         # get index 2 and set right motor to that speed
+        right_motor_speed = command[i][1]
         # get index 3 and set the duration of time to drive
+        duration = command[i][2]
         # execute drive command
+        tank_drive.on_for_seconds(SpeedPercent(left_motor_speed), SpeedPercent(right_motor_speed), duration)
         # next loop
     
     # stop both motors
-    # get gyro sensor reading and print it to the screen
-
+    tank_drive.off()
     # somehow compute the location? as a distance from it's origin point?
 
 

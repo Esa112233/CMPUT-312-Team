@@ -64,22 +64,22 @@ def draw_lemniscate():
     rotations = 2  # Adjust this value based on the radius of the lemniscates circles once we ficure out how big they will be.
     
     # Move forward using the defined number of rotations
-    tank_drive.on_for_rotations(SpeedPercent(20), SpeedPercent(20), rotations)
+    tank_drive.on_for_rotations(SpeedPercent(10), SpeedPercent(10), 3.51)
     
     # Turn 270 degrees to the right, with both tires at speeds >=0
-    tank_drive.on_for_degrees(SpeedPercent(20), SpeedPercent(40), 270)
+    tank_drive.on_for_degrees(SpeedPercent(4), SpeedPercent(10), 270)
     
     # Move forward using the defined number of rotations to return to the origin
-    tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), rotations)
+    tank_drive.on_for_rotations(SpeedPercent(10), SpeedPercent(10), 3.51)
     
     # Move forward using the defined number of rotations again
-    tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), rotations)
+    tank_drive.on_for_rotations(SpeedPercent(10), SpeedPercent(10), 3.51)
     
     # Turn 270 degrees to the left, with both tires at speeds >=0
-    tank_drive.on_for_degrees(SpeedPercent(40), SpeedPercent(20), 0)
+    tank_drive.on_for_degrees(SpeedPercent(10), SpeedPercent(4), 0)
 
     # Move forward using the defined number of rotations to return to the origin
-    tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), rotations)
+    tank_drive.on_for_rotations(SpeedPercent(10), SpeedPercent(10), 3.51)
 
 
 

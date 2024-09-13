@@ -54,6 +54,7 @@ def set_font(name):
 def draw_rectangle(gyro_sensor):
     ''' Draw a rectangle upon the driving surface by moving the robot in a rectangle pattern'''
     tank_drive = MoveTank(OUTPUT_D, OUTPUT_A)
+    tank_drive.gyro = gyro_sensor
     
     for _ in range(4):
         # drive staright for 5 rotations of the outer motor

@@ -60,13 +60,40 @@ def draw_line():
     tank_drive.gyro = GyroSensor(INPUT_3)
     tank_drive.gyro.calibrate()
     
-    # while rotations is less than variable_1(some distance we want it to drive)
-        # get current gyro output and multiply it by (-10)
-        # if gyro output is less than 0, then adjust speed of left motor by gyro output
-        # else adjust speed of right motor by gyro output
-    # exit while loop
-    # stop both motors
+    # Initialize the variable for the distance we want it to drive
+    variable_1 = 10  # Example distance, replace with actual value
+    
+    # Initialize the rotations counter
+    rotations = 0
 
+    left_motor_speed = 20
+    right_motor_speed = 20
+
+    # While rotations is less than variable_1 (some distance we want it to drive) and gyro output is a number
+    while rotations < variable_1 and isinstance(tank_drive.gyro.angle, (int, float)):
+        # Get current gyro output and multiply it by -10
+        gyro_output = tank_drive.gyro.angle * -10
+        
+        # If gyro output is less than 0, then adjust speed of left motor by gyro output
+        if gyro_output < 0:
+            left_motor_speed = left_motor_speed - gyro_output
+        # Else if gyro output is greater than 0, then adjust speed of right motor by gyro output
+        elif gyro_output > 0:
+            right_motor_speed = right_motor_speed - gyro_output
+        # Else set both motors to the same speed
+        else:
+            left_motor_speed = 20
+            right_motor_speed = 20 
+        
+        # Drive forward for 1/4 of a tire rotation
+        tank_drive.on_for_rotations(SpeedPercent(left_motor_speed), SpeedPercent(right_motor_speed), 0.25)
+        
+        # Update rotations counter (this should be based on actual motor rotations)
+        rotations += 0.25  # Replace with actual rotation increment logic
+    
+    # Exit while loop
+    # Stop both motors
+    tank_drive.off()
 
 
 def main():
